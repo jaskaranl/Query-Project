@@ -53,3 +53,16 @@ button {
   width: 250px;
   font-size: 18px;
 }
+
+.outputbox{
+  background-color: rgba(233, 227, 227, 0.4);
+  margin: 2% 20%;
+  padding: auto;
+  border-radius: 20px;
+  padding: 20px;
+}
+.outputbox h4{
+ 
+  padding: 10px;
+  
+}

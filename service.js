@@ -3,12 +3,9 @@ require("dotenv").config();
 const uri = process.env.CONNECTION_URL;
 const client = new MongoClient(uri);
 database = client.db("LogDigester");
-const haiku = database.collection("LogDigester");
-exports.a = function a() {
-  console.log(1);
-};
+const LogDigester = database.collection("LogDigester");
+
 exports.querySelectionWithNoTime = async function (query, txt) {
-  //   console.log(txt, query);
   const pipeline = [
     {
       $search: {
@@ -16,25 +13,26 @@ exports.querySelectionWithNoTime = async function (query, txt) {
         text: {
           query: '{$search:{text:{query:"' + txt + '"}}}',
           path: {
-            wildcard: "*",
-          },
-        },
-      },
-    },
+            wildcard: "*",},},},},
     {
       $match: query,
     },
   ];
 
-  data = await haiku.aggregate(pipeline).toArray();
+  data = await LogDigester.aggregate(pipeline).toArray();
   return data;
 };
-exports.querySelectionWithTime = async function (
-  query,
-  txt,
-  startTimestamp,
-  endTimestamp
-) {
+
+exports.querySelectionWithTime = async function ( query, txt,startTimestamp,endTimestamp) {
+  timestampObject={}
+  if(startTimestamp!=="")
+  {
+    timestampObject.$gte=startTimestamp
+  }
+  if(endTimestamp!=="")
+  {
+    timestampObject.$lte=endTimestamp;
+  }
   const pipeline = [
     {
       $search: {
@@ -42,35 +40,34 @@ exports.querySelectionWithTime = async function (
         text: {
           query: '{$search:{text:{query:"' + txt + '"}}}',
           path: {
-            wildcard: "*",
-          },
-        },
-      },
-    },
+            wildcard: "*",},},},},
     {
       $match: {
         $and: [
           query,
-          { timestamp: { $gte: startTimestamp, $lte: endTimestamp } },
-        ],
-      },
+          { timestamp: timestampObject },
+        ],},
     },
   ];
-  data = await haiku.aggregate(pipeline).toArray();
+  data = await LogDigester.aggregate(pipeline).toArray();
   return data;
 };
 
-exports.querySelectionWithoutText = async function (
-  startTimestamp,
-  endTimestamp
-) {
+exports.querySelectionWithoutText = async function (startTimestamp,endTimestamp) {
+  timestampObject={}
+  if(startTimestamp!==""){
+    timestampObject.$gte=startTimestamp
+  }
+  if(endTimestamp!==""){
+    timestampObject.$lte=endTimestamp;
+  }
   pipeline = [
     {
       $match: {
-        timestamp: { $gte: startTimestamp, $lte: endTimestamp },
+        timestamp: timestampObject,
       },
     },
   ];
-  data = await haiku.aggregate(pipeline).toArray();
+  data = await LogDigester.aggregate(pipeline).toArray();
   return data;
 };
