@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.post("/insert",(req, res) =>insert(req,res));
+app.post("/",(req, res) =>insert(req,res));
 app.post("/query",(req,res)=>processQuery(req,res));
 
 app.listen(8081, (err) => {

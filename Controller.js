@@ -22,7 +22,9 @@ const createQuery = (body) => {
 exports.processQuery=async function(req,res){
 
     const query = createQuery(req.body.query);
+   
     const { txt, startTimestamp, endTimestamp } = req.body;
+    
     let data = null;
     
     if (startTimestamp === "" && endTimestamp === "") {
@@ -39,5 +41,5 @@ exports.processQuery=async function(req,res){
 exports.insert=async function(req,res){
     const LogDigester = database.collection("LogDigester");
     j = await LogDigester.insertOne(req.body);
-    return res.send(200);
+    return res.send("Data inserted")
 }

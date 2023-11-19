@@ -2,69 +2,62 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+### `TechStack of the Project`
+
+Nodejs
+React
+MongoDB Cloud
+Express
+Nginx
+
+### `Working of the Project`
+
+I have exposed the endpoint POST http://localhost:3000/ for log ingestion in out Cloud database Which solves our problem of handling high loads of logs. I have Used Nginx to handle high volumes of logs efficiently which routes out requests to one of the several server instances reducing the overall load on a single server.
+
+To overcome the obstacles of bottlenecks such as I/O operations i have implemented asynchronous programming in server-side so that server doesn't wait over a single request and divide the requests to both servers equally we can add more servers as per our needs
+
+Since we are using MongoDB cloud solution the scalabilty of our application is in good hands we can scale as per our needs but because of currently being using free-tier of mongodb we are limited to 100 operations per/s
+
+
+
+### `Frontend Working of the Project`
+
+To start Frontend create a .env file and put PORT=4200 and CONNECTION_URL=mongodb+srv://kambojjaskaran321:jaanu123@cluster0.ph3pvhp.mongodb.net/?retryWrites=true
+
+run start:frontend is the command for launching frontend
+The frontend is hosted at http://localhost:4200/
+
+## `How to Ingest Log`
+
+You can ingest log by making a POST request to http://localhost:3000/ and body in format as specified and data fetch data from mongodb cloud by making a POST request to http://localhost:3000/query which routes the request to each server for the sake of project i have made 2 server instances
+
+## `Search Result`
+Data is stored in BSON format for occupying less storage in the cloud for Efficient storage.Data is Indexed in for faster search results and sharding in case of failure of primary database
+
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+### `npm start:frontend`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Open [http://localhost:4200](http://localhost:4200) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
+### `npm start:backend:node1`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Runs the Backend server instance 1 in the development mode.\
+(http://localhost:8080) to view it in your browser.
 
-### `npm run build`
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
+### `npm start:backend:node2`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Runs the Backend server instance 1 in the development mode.\
+(http://localhost:8081) to view it in your browser.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

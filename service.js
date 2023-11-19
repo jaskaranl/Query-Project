@@ -6,6 +6,7 @@ database = client.db("LogDigester");
 const LogDigester = database.collection("LogDigester");
 
 exports.querySelectionWithNoTime = async function (query, txt) {
+  
   const pipeline = [
     {
       $search: {

@@ -60,9 +60,11 @@ button {
   padding: auto;
   border-radius: 20px;
   padding: 20px;
+  word-wrap: break-word;
+  white-space: normal;
+  
 }
 .outputbox h4{
- 
   padding: 10px;
   
 }

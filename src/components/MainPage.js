@@ -24,7 +24,7 @@ function MainPage() {
     return x;
   };
 
-  const setChange = (e) => {
+  const setChangeInValues = (e) => {
     let { name, value } = e.target;
     let seperator = name.search(":");
 
@@ -41,7 +41,7 @@ function MainPage() {
     setText(value);
   };
 
-  const setTime = (e) => {
+  const setTimeValue = (e) => {
     const { name, value } = e.target;
     name === "StartTimeStamp"
       ? setStartTimestamp(value)
@@ -74,29 +74,29 @@ function MainPage() {
       <h1>Query Interface </h1>
       <input name="fulltext" type="text" onChange={setTextValue} placeholder="Text to Search"/>
       <h1>Filters</h1>
-      <input value={values.level} name="level" type="text" onChange={setChange} placeholder="level" />
-      <input name="message" type="text" onChange={setChange} placeholder="message" />
-      <input name="resourceId" type="text" onChange={setChange} placeholder="resourceId"/>
-      <input name="StartTimeStamp" type="text" onChange={setTime} placeholder="StartTimeStamp" />
-      <input name="EndTimeStamp" type="text" onChange={setTime} placeholder="EndTimeStamp" />
-      <input name="traceId" type="text" onChange={setChange} placeholder="traceId" />
-      <input name="spanId" type="text" onChange={setChange}  placeholder="spanId" />
-      <input name="commit" type="text" onChange={setChange} placeholder="commit"/>
-      <input name="metadata:parentResourceId" type="text" onChange={setChange} placeholder="parentResourceId"/>
+      <input value={values.level} name="level" type="text" onChange={setChangeInValues} placeholder="level" />
+      <input name="message" type="text" onChange={setChangeInValues} placeholder="message" />
+      <input name="resourceId" type="text" onChange={setChangeInValues} placeholder="resourceId"/>
+      <input name="StartTimeStamp" type="text" onChange={setTimeValue} placeholder="StartTimeStamp" />
+      <input name="EndTimeStamp" type="text" onChange={setTimeValue} placeholder="EndTimeStamp" />
+      <input name="traceId" type="text" onChange={setChangeInValues} placeholder="traceId" />
+      <input name="spanId" type="text" onChange={setChangeInValues}  placeholder="spanId" />
+      <input name="commit" type="text" onChange={setChangeInValues} placeholder="commit"/>
+      <input name="metadata:parentResourceId" type="text" onChange={setChangeInValues} placeholder="parentResourceId"/>
 
       <button onClick={submit}>Submit</button>
-      {checker==false&&<h1>no value found</h1>}     
+      {checker===false&&<h1>no value found</h1>}     
       {data.length > 0 &&
         data.map((e) => {
           return (
             <div className="outputbox">
-              <h2>level-{e.level}</h2>
-              <h4>message-{e.message}</h4>
-              <h4>spanId-{e.spanId}</h4>
-              <h4>traceId-{e.traceId}</h4>
-              <h4>commit-{e.commit}</h4>
-              <h4>resourceId-{e.resourceId}</h4>
-              <h4>parentResourceId-{e.metadata.parentResourceId}</h4>
+              <h2>Level-{e.level}</h2>
+              <h4>Message-{e.message}</h4>
+              <h4>SpanId-{e.spanId}</h4>
+              <h4>TraceId-{e.traceId}</h4>
+              <h4>Commit-{e.commit}</h4>
+              <h4>ResourceId-{e.resourceId}</h4>
+              <h4>ParentResourceId-{e.metadata.parentResourceId}</h4>
             </div>
           );
         })}
