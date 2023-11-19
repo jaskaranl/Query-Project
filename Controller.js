@@ -22,11 +22,9 @@ const createQuery = (body) => {
 exports.processQuery=async function(req,res){
 
     const query = createQuery(req.body.query);
-   
     const { txt, startTimestamp, endTimestamp } = req.body;
-    
     let data = null;
-    
+
     if (startTimestamp === "" && endTimestamp === "") {
         data = await querySelectionWithNoTime(query, txt);
     } else if (txt !== "") {
