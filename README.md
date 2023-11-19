@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-### `TechStack of the Project`
+### TechStack of the Project
 
 Nodejs
 React
